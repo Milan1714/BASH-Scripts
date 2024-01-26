@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Function to Update and Patch Ubuntu, including Security Updates
+update_and_patch() {
+    echo "Updating package list..."
+    sudo apt update
+
+    echo "Upgrading installed packages..."
+    sudo apt upgrade -y
+
+    echo "Running unattended-upgrade for security updates..."
+    sudo unattended-upgrade -d --dry-run --only-security
+
+    echo "Removing unused packages..."
+    sudo apt autoremove -y
+
+    echo "Cleaning up package cache..."
+    sudo apt clean
+
+    echo "Update and patch completed, including security updates."
+}
+
+# Call the function
+update_and_patch
